@@ -17,31 +17,22 @@ var validMsg = $("#valid-msg");
 var errorMap = [ "Invalid number", "Invalid country code", "Too short",
 	"Too long", "Invalid number" ];
 
-//TODO: initialize intlTelInput plugin to use the utilsScript to load Google's
-//libphonenumber utility
-//(use the following path
-//js/vendor/intl-tel-input-master/build/js/utils.js ).
-//See in this project:
-//js/vendor/intl-tel-input-master/examples/gen/is-valid-number.html
-
+//initializing intlTelInput plugin to use the utilsScript to load Google's libphonenumber utility
 var iti = window.intlTelInput(telInput, {
     utilsScript: "../../js/vendor/intl-tel-input-master/build/js/utils.js"
 });
 
-//TODO: In the functions below, use the following documentation page,
-//BUT make sure you use jQuery's show & hide methods INSTEAD of removing and
-//adding "error" and "hide" css-classes!
-//See in this project:
-//js/vendor/intl-tel-input-master/examples/gen/is-valid-number.html
+//Resets error message to empty string;
+//hides error and valid messages
 var reset = function() {
     errorMsg.html("");
     errorMsg.hide();
     validMsg.hide();
 };
 
-//TODO: on blur: validate telInput
-//if valid: show validMsg
-//if there is an error: show errorMsg
+//on blur: validates telInput
+//if valid: shows validMsg
+//if there is an error: shows errorMsg
 telInput.addEventListener('blur', function() {
     reset();
     if (telInput.value.trim()) {
@@ -55,7 +46,7 @@ telInput.addEventListener('blur', function() {
     }
 });
 
-//TODO: on keyup / change flag: reset
+//on keyup / change flag: reset
 telInput.addEventListener('change', reset);
 telInput.addEventListener('keyup', reset);
 
@@ -118,8 +109,7 @@ var processFormData = function(event) {
 	$form
 	.validate({
 		rules : {
-			// TODO: Make sure the planting date has been set by the
-			// user and is in dateISO format.
+			// planting date has been set by the user in dateISO format.
 			// Input will be in 24 hour format but the display in modern
 			// browsers will be use AM/PM formatting.
 			// See: http://jqueryvalidation.org/dateISO-method/
@@ -163,17 +153,13 @@ var initDatePicker = function() {
 		console.log("Modernizr.inputtypes.date:", Modernizr.inputtypes.date);
 	}
 	if (!Modernizr.inputtypes.date) {
-		// TODO: The browser doesn't support native datepickers, so use the
-		// jQuery UI Date Picker
-		// with date format 'yy-mm-dd' which will make the date have a
-		// 4 digit year (confusingly for jQuery UI y means a 2 digit year and yy
-		// means a 4 digit year),
+		// For the browser that doesn't support native datepickers: jQuery UI Date Picker
+		// with date format 'yy-mm-dd' which will make the date have a 4 digit year (confusingly for jQuery UI y means a 2 digit year and yy means a 4 digit year),
 		// and 2 digit months and days.
 		// Test using the current FirefoxDeveloperEdition browser
-		// AND the old Firefox 55.0.3 browser. You can get the old one from:
-		// https://ftp.mozilla.org/pub/firefox/releases/55.0.3/
+		// AND the old Firefox 55.0.3 browser.
         $( "#planting_date" ).datepicker({
-            'format': 'm/d/yyyy',
+            'format': 'yy-mm-dd', //'m/d/yyyy' or 'yy-mm-dd'
             'autoclose': true
         });
         
@@ -182,6 +168,5 @@ var initDatePicker = function() {
 //Initialize the jQuery UI plugin's DatePicker plugin for the planting time
 initDatePicker();
 
-//TODO: Initialize the default timepicker plugin for the planting time
-//See in this project the Basic Example at: timepickerexample.html
+//Initializing the default timepicker plugin for the planting time
 $("#planting_time").timepicker();
