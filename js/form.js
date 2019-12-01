@@ -19,7 +19,7 @@ var errorMap = [ "Invalid number", "Invalid country code", "Too short",
 
 //initializing intlTelInput plugin to use the utilsScript to load Google's libphonenumber utility
 var iti = window.intlTelInput(telInput, {
-    utilsScript: "js/vendor/intl-tel-input-master/build/js/utils.js"	
+    utilsScript: "../../js/vendor/intl-tel-input-master/build/js/utils.js"
 });
 
 //Resets error message to empty string;
